@@ -1,8 +1,11 @@
+from random import randint
+import xml.etree.ElementTree as ET
+
+
 # Вариант 4
 
 file = open("books-en.csv")
 column_names = file.readline() #строчка с названиями колонок
-count = 0
 data = [x[:-1] for x in file]
 
 
@@ -16,6 +19,7 @@ for i in range(len(data)):
 
 
 # Задание 1
+count = 0
 for j in data:
     if len(j[1]) > 30:
         count += 1
@@ -34,4 +38,24 @@ for book in data:
             print(f'{RED} Книга не доступна к покупке: {END} {book[1]}')
 
 
-# Задание 3
+# Задание 3 
+generator_result =  open('generator_result.txt','w')
+numbers_of_book = len(data)
+for i in range(1,21):
+    number = randint(1,numbers_of_book)
+    generator_result.write(f'{i} {data[number][2]}. {data[number][1]} - {data[number][3]} \n')
+
+
+# Задание 4
+file_currency = ET.parse('currency.xml')
+currency_dictionary =  open('currency_dictionary.txt','w')
+currency = file_currency.getroot()
+for elem in currency:
+   c=0
+   for subelem in elem:
+        c += 1
+        if c == 1:
+            currency_dictionary.write(f'NumCode: {subelem.text} ') 
+        if c == 2:
+            currency_dictionary.write(f'CharCode: {subelem.text} \n')
+    
