@@ -9,16 +9,12 @@ column_names = file.readline() #строчка с названиями коло�
 data = [x[:-1] for x in file]
 
 
-GREEN = '\033[32m'
-RED = '\033[31m'
-END = '\033[0m'
-
-
 for i in range(len(data)):
-    data[i] = data[i].split(';')
+    data[i] = data[i].split(';') 
 
 
 # Задание 1
+
 count = 0
 for j in data:
     if len(j[1]) > 30:
@@ -27,6 +23,11 @@ print(f'Количество книг с длиной названия боле�
 
 
 # Задание 2
+
+GREEN = '\033[32m'
+RED = '\033[31m'
+END = '\033[0m'
+
 print("Укажите автора")
 name = input()
 for book in data:
@@ -39,7 +40,7 @@ for book in data:
 
 
 # Задание 3 
-generator_result =  open('generator_result.txt','w')
+generator_result =  open('generator_result.txt','w') # файл для записи сгенерированных записей
 numbers_of_book = len(data)
 for i in range(1,21):
     number = randint(1,numbers_of_book)
@@ -48,7 +49,7 @@ for i in range(1,21):
 
 # Задание 4
 file_currency = ET.parse('currency.xml')
-currency_dictionary =  open('currency_dictionary.txt','w')
+currency_dictionary =  open('currency_dictionary.txt','w') # файл для записи извлечённых данных
 currency = file_currency.getroot()
 for elem in currency:
    c=0
